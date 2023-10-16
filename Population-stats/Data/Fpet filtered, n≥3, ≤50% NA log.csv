@@ -1,0 +1,53 @@
+Output of filter-genotypes.R
+Date: 2022-09-07
+Input data file: hf_fpet_sub.csv
+
+Filtering criteria:
+  Minimum population sample size: 3
+  Maximum proportion NA genotypes:
+   - Per locus:		 0.5
+   - Per individual:	 0.5
+
+Summary stats pre-filtering:
+ - Number of populations:	 19
+ - Number of individuals:	 247
+ - Number of loci:		 1163
+
+Filter on missing genotypes per individual sample:
+ - Number of individuals removed:	 40
+ - Number of individuals remaining:	 207
+
+ - No populations smaller than the minimum sample size.
+
+Filter on missing genotypes per locus - globally:
+ - Number of loci removed:	 27
+ - Number of loci remaining:	 1136
+
+Filter based on missing genotypes per locus per population:
+  Number of loci removed: 407
+  Number of loci remaining: 729
+
+Summary of the filtered data set:
+
+count,pop,n_samples,n_loci,NA_freq
+1,100,5,729,0.01997
+2,103,4,729,0.03830
+3,104,6,729,0.01254
+4,112,20,729,0.09713
+5,113,15,729,0.04861
+6,158,16,729,0.02043
+7,172,16,729,0.04078
+8,179,19,729,0.05465
+9,201,19,729,0.05371
+10,204,6,729,0.01345
+11,205,7,729,0.01192
+12,210,3,729,0.02143
+13,214,5,729,0.01806
+14,215,6,729,0.01550
+15,217,6,729,0.01550
+16,39,7,729,0.01290
+17,70,17,729,0.12674
+18,95,16,729,0.02120
+19,96,14,729,0.11804
+----,----,----,----,----
+,,207,,0.04005
