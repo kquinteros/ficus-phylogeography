@@ -4,13 +4,13 @@
 #Purpose: determine if 218 individual is hybrid from two parental populations
 ################################set environment#################################
 library(adegenet)
-setwd("~/Projects/git_repositories/github/Fig_wasp_phylogeography/")
+
 ################################Load dataset####################################
-load("Data/Phased_data/UCE_50p/Method3/Phased_snps/phased_snp_50_fixed.Rda")
+load("phased_snp_50_fixed.Rda")
 pop(phased_snp_50__unedit) <- phased_snp_50__unedit$strata$fine_region
 phased_snp_50__unedit <- phased_snp_50__unedit[order(as.numeric(as.character(phased_snp_50__unedit$strata$Lon)))]
 #############################run with STRUCTURE data############################
-data <- read.structure("Data/STRUCTURE_FILES/WASP/pha_random_50p.str",
+data <- read.structure("pha_random_50p.str",
                        n.ind = 100,
                        n.loc = 1880,
                        onerowperind = F,
@@ -50,7 +50,6 @@ pdf("output/snpcluster/structuredata_snapclust_w_hybrids_w_backcrosses.pdf",
 compoplot(res2.back, col.pal = funky,
           main = "snapclust with F1 and backcrosses")
 dev.off()
-compoplot
 
 res3.back <- snapclust(data, k=2, hybrids = TRUE, hybrid.coef = c(.125,.25, .5))
 
