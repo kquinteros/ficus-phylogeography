@@ -1,0 +1,44 @@
+Output of filter-genotypes.R
+Date: 2022-09-19
+Input data file: hf_pego.csv
+
+Filtering criteria:
+  Minimum population sample size: 2
+  Maximum proportion NA genotypes:
+   - Per locus:		 0.5
+   - Per individual:	 0.5
+
+Summary stats pre-filtering:
+ - Number of populations:	 99
+ - Number of individuals:	 99
+ - Number of loci:		 1414
+
+Filter on missing genotypes per individual sample:
+ - Number of individuals removed:	 6
+ - Number of individuals remaining:	 93
+
+ - No populations smaller than the minimum sample size.
+
+Filter on missing genotypes per locus - globally:
+ - Number of loci removed:	 26
+ - Number of loci remaining:	 1388
+
+Filter based on missing genotypes per locus per population:
+  Number of loci removed: 210
+  Number of loci remaining: 1178
+
+Summary of the filtered data set:
+
+count,pop,n_samples,n_loci,NA_freq
+1,1,13,1178,0.09201
+2,2,20,1178,0.11786
+3,3,21,1178,0.10480
+4,4,13,1178,0.06610
+5,5,3,1178,0.07089
+6,6,3,1178,0.14633
+7,7,6,1178,0.07076
+8,8,2,1178,0.05056
+9,9,3,1178,0.02686
+10,10,9,1178,0.10226
+----,----,----,----,----
+,,93,,0.08484

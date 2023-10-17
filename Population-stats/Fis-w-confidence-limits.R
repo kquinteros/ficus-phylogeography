@@ -298,12 +298,12 @@ plot(x=pop_table_df$n, y=pop_table_df$Fis, main="Fis versus sample size (n)",
      xlab="n", ylab="Fis")
 abline(lm(pop_table_df$Fis ~ pop_table_df$n))
 
-
-plot(x=pop_table_df$Fis, y=Fis.mean, main="Population-level Fis_Quinteros versus Fis_Nason",
-     xlab="Fis_Nason", ylab="Fis_Quinteros", xlim=c(-0.1,0.1), ylim=c(-0.1,0.15))
-text_label <- "Fis_Quinteros = 1 - Ho_mean/He_mean\nFis_Nason = mean(Fis_locus)"
-text(x=-0.05, y=0.13, label=text_label)
-abline(coef = c(0, 1))
+#this method was not used in the paper. 
+#plot(x=pop_table_df$Fis, y=Fis.mean, main="Population-level Fis_Quinteros versus Fis_Nason",
+#     xlab="Fis_Nason", ylab="Fis_Quinteros", xlim=c(-0.1,0.1), ylim=c(-0.1,0.15))
+#text_label <- "Fis_Quinteros = 1 - Ho_mean/He_mean\nFis_Nason = mean(Fis_locus)"
+#text(x=-0.05, y=0.13, label=text_label)
+#abline(coef = c(0, 1))
 
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
