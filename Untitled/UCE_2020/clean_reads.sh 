@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Copy/paste this job script into a text file and submit with the command:
+#    sbatch thefilename
+# job standard output will go to the file slurm-%j.out (where %j is the job ID)
+
+#SBATCH --time=20:00:00   # walltime limit (HH:MM:SS)
+#SBATCH --nodes=1   # number of nodes
+#SBATCH --ntasks-per-node=36   # 36 processor core(s) per node
+#SBATCH --mem=20G   # maximum memory per node
+#SBATCH --job-name="KQ_clean"
+#SBATCH --mail-user=kevinq@iastate.edu   # email address
+#SBATCH --mail-type=BEGIN
+#SBATCH --mail-type=END
+#SBATCH --mail-type=FAIL
+#SBATCH --error="KQ_clean_error_file" # job standard error file (%j replaced by job id)
+
+# LOAD MODULES, INSERT CODE, AND RUN YOUR PROGRAMS HERE
+source activate phyluce167
+
+
+# go to the directory containing our config file and data
+cd /work/LAS/phylo-lab/kevinq/Fig_wasp_phylogeography/Data/UCE/
+
+# run illumiprocessor
+illumiprocessor \
+    --input raw_fastq/ \
+    --output clean-fastq \
+    --r1-pattern "{}_(R1|READ1|Read1|read1)_\d+.fastq(?:.gz)*" \
+    --r2-pattern "{}_(R2|READ2|Read2|read2)_\d+.fastq(?:.gz)*" \
+    --log-path logs/ \
+    --config illumiprocessor_PW_Mar2020_ss.conf \
+    --cores 36
+
+# move to the directory holding our cleaned reads
+cd clean-fastq/
+
+# run this script against all directories of reads
+for i in *;
+do
+    phyluce_assembly_get_fastq_lengths --input $i/split-adapter-quality-trimmed/ --csv;
+done
