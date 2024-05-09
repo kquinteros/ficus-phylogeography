@@ -5,18 +5,17 @@ library(tidyverse)
 library(hierfstat)
 library(cowplot)
 library(ggrepel)
-###########################set working directory###############################
-setwd("~/Projects/Fig_wasp_phylogeography/")
+
 ##########################read in Fpetiolaris data#############################
 #read in data
 #data <- read.table("Data/Fpet_tree/Second_Finn_dataset/output/sub_fpet-s2_trim25-s3_clu_th90-s7_min125_outfiles/sub_fpet-s2_trim25-s3_clu_th90-s7_min125.stru")
 
 #filter data set
-#see log for more information: "output/Genetic_Stats/Fpet filtered, n≥3, ≤50% NA log.csv
+#see log for more information: "Fpet filtered, n≥3, ≤50% NA log.csv
 #At least 3 individual needed per site and removed individuals with more 50% missing data
-data <- read.csv(file = "output/Genetic_Stats/data/Fpet filtered, n≥3, ≤50% NA data.csv")
+data <- read.csv(file = "Data/Fpet filtered, n≥3, ≤50% NA data.csv")
 
-#Add cluster information based off structurre and phylogenetics
+#Add cluster information based off structure and phylogenetics
 data <- add_column(data, cluster = NA, .before = "pop")
 data <- data%>%mutate(cluster = case_when(
   pop=="112" ~ 1, # Baja
@@ -65,7 +64,7 @@ output <- betas(data[c(2,4:732)])
 Hs.betas <- rowMeans(output$Hi, na.rm = T)
 
 ##########################Read in Fis table####################################
-Fis <- read.csv(file = "output/Genetic_Stats/Fis/Fis_fpet_nason_approach.csv")
+Fis <- read.csv(file = "Fis_fpet_nason_approach.csv")
 ###################Add Expected Heterozygosity to Fis table####################
 
 #change order to match Fis table order of population
@@ -78,7 +77,7 @@ Hs.betas <- Hs.betas[order(factor(names(Hs.betas)))] %>% round(digits = 4)
 Fis <- cbind(Fis, Avg_Ho, Avg_Hs, Hs.ade, Hs.betas)
 
 ####################Read in Locality information###############################
-lat <- readxl::read_xlsx("Data/Summary_coord/Fpet_plot_sites.xlsx")
+lat <- readxl::read_xlsx("Data/Fpet_plot_sites.xlsx")
 ####################Add Latitude and Longitude#################################
 lat$`Sample Site`[lat$`Sample Site` == "100T"] <- "100"
 lat <- lat[order(factor(lat$`Sample Site`)),]
@@ -160,6 +159,6 @@ h.plot <- ggplot() +
         axis.title.y = element_text(size = 10)) 
 plot(h.plot)
 
-ggsave("output/final_figures/Figure5/Fpet_Exp_Hs_and_Lat_nason_function.pdf",
+ggsave("Fpet_Exp_Hs_and_Lat_nason_function.pdf",
        plot = h.plot, device = "pdf",
        width = 6, height = 4, units = "in", dpi = 300)

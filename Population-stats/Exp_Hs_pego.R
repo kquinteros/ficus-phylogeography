@@ -6,13 +6,13 @@ library(hierfstat)
 library(cowplot)
 library(ggrepel)
 library(magrittr)
-###########################set working directory################################
-setwd("~/Projects/Fig_wasp_phylogeography/")
+
 ######################read in filter Adegenet Object##########################
 #Site must have 2 or more individuals
 #individuals with more than 50% removed
 #Combined site 209 and 214 since they are close in proximity
-data <- read.csv(file = "output/Genetic_Stats/data/Pego filtered, n≥2, ≤50% NA data.csv")
+data <- read.csv(file = "Data/Pego filtered, n≥2, ≤50% NA data.csv")
+
 #remove hybrid individual
 data <- data[!data$ind== "P342_petiolaris",]
 
@@ -126,7 +126,7 @@ Hs.betas %<>% round(digits = 4)
 Fis <- cbind(Fis, Avg_Ho, Avg_Hs, Hs.ade, Hs.betas)
 
 ####################Read in Locality information###############################
-lat <- readxl::read_xlsx("Data/Summary_coord/Pego_pop_cord.xlsx")
+lat <- readxl::read_xlsx("Data/Pego_pop_cord.xlsx")
 ####################Add Latitude and Longitude#################################
 lat$`Sampling Site`[lat$`Sampling Site` == "100T"] <- "101" #rename 100T
 #remove sites that are not in filtered data
@@ -280,7 +280,7 @@ h1.plot <- ggplot() +
         axis.title.y = element_text(size = 10)) 
 plot(h1.plot)
 
-ggsave("output/final_figures/Figure5/Pego_Exp_Hs_and_Lat_Hs_betas.pdf",
+ggsave("Pego_Exp_Hs_and_Lat_Hs_betas.pdf",
        plot = h1.plot, device = "pdf",
        width = 7, height = 4, units = "in", dpi = 400)
 

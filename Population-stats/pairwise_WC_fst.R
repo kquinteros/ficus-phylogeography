@@ -12,27 +12,24 @@ library(tidyverse)
 library(hierfstat)
 library(magrittr)
 
-#Set working directory
-setwd("~/Projects/git_repositories/github/Fig_wasp_phylogeography/")
-
 
 ###############################read in data#####################################
-pego <- read.csv("output/Genetic_Stats/data/Pego_filtered-n≥2-≤50%-NA_cluster data.csv")
+pego <- read.csv("Data/Pego_filtered-n≥2-≤50%-NA_cluster data.csv")
 
 pego_pairwise_fst <- pairwise.WCfst(pego[-2]) #calculate WC_FST
 
 #write to file
-write.csv(pego_pairwise_fst, file = "output/Genetic_Stats/Fst/pego_pairwise_WC_fst_region.csv")
+write.csv(pego_pairwise_fst, file = "pego_pairwise_WC_fst_region.csv")
 
 pego_pairwise_fst_bp <- boot.ppfst(pego[-2], nboot = 999) #bootstrap
 #save to file
-save(pego_pairwise_fst_bp, file = "output/Genetic_Stats/Fst/pego_pairwise_WC_fst_bp_region.csv")
+save(pego_pairwise_fst_bp, file = "pego_pairwise_WC_fst_bp_region.csv")
 
 ll <- pego_pairwise_fst_bp$ll #lower confidence limit
 ul <- pego_pairwise_fst_bp$ul #upper confidence limit
 
-write.csv(ll, "output/Genetic_Stats/Fst/pego_pairwise_WC_fst_ll_region.csv")
-write.csv(ul, "output/Genetic_Stats/Fst/pego_pairwise_WC_fst_ul_region.csv")
+write.csv(ll, "pego_pairwise_WC_fst_ll_region.csv")
+write.csv(ul, "Fst/pego_pairwise_WC_fst_ul_region.csv")
 
 ########################format the complete table###############################
 
@@ -61,7 +58,7 @@ pego_Fst_table[lower.tri(pego_Fst_table)] <- NA
 
 #write to file
 write.table(pego_Fst_table,
-            file = "output/Genetic_Stats/Fst/pego_Fst-table_region.txt",
+            file = "pego_Fst-table_region.txt",
             sep = "\t")
 
 ############################Fst for phylogroups#################################
@@ -102,17 +99,17 @@ pego <- pego %>% mutate(cluster = case_when(
 pego_pairwise_fst.cluster <- pairwise.WCfst(pego[-c(2:3)]) #calculate WC_FST
 
 #write to file
-write.csv(pego_pairwise_fst.cluster, file = "output/Genetic_Stats/Fst/pego_pairwise_WC_fst_cluster.csv")
+write.csv(pego_pairwise_fst.cluster, file = "pego_pairwise_WC_fst_cluster.csv")
 #bootstrap
 pego_pairwise_fst_bp.cluster <- boot.ppfst(pego[-c(2:3)], nboot = 999)
 #save to file
-save(pego_pairwise_fst_bp.cluster, file = "output/Genetic_Stats/Fst/pego_pairwise_WC_fst_bp_cluster.csv")
+save(pego_pairwise_fst_bp.cluster, file = "pego_pairwise_WC_fst_bp_cluster.csv")
 
 ll.cluster <- pego_pairwise_fst_bp.cluster$ll #lower confidence limit
 ul.cluster <- pego_pairwise_fst_bp.cluster$ul #upper confidence limit
 
-write.csv(ll.cluster, "output/Genetic_Stats/Fst/pego_pairwise_WC_fst_ll_cluster.csv")
-write.csv(ul.cluster, "output/Genetic_Stats/Fst/pego_pairwise_WC_fst_ul_cluster.csv")
+write.csv(ll.cluster, "pego_pairwise_WC_fst_ll_cluster.csv")
+write.csv(ul.cluster, "pego_pairwise_WC_fst_ul_cluster.csv")
 
 ######################format the complete cluster###############################
 
@@ -139,27 +136,27 @@ pego_Fst_table.cluster[lower.tri(pego_Fst_table.cluster)] <- NA
 
 #write to file
 write.table(pego_Fst_table.cluster,
-            file = "output/Genetic_Stats/Fst/pego_Fst-table_cluster.txt",
+            file = "pego_Fst-table_cluster.txt",
             sep = "\t")
 
 ######################do the same for the fpetiolaris##########################
 #read the data
-fpet <- read.csv(file = "output/Genetic_Stats/data/Fpet filtered-n≥3-≤50%-NA_cluster data.csv")
+fpet <- read.csv(file = "Data/Fpet filtered-n≥3-≤50%-NA_cluster data.csv")
 #pairwise WC_Fst
 fpet_pairwise_fst <- pairwise.WCfst(fpet[-2])
 #write to file
-write.csv(fpet_pairwise_fst , file = "output/Genetic_Stats/Fst/fpet_pairwise_WC_fst.csv")
+write.csv(fpet_pairwise_fst , file = "fpet_pairwise_WC_fst.csv")
 #bootstrap
 fpet_pairwise_fst_bp <- boot.ppfst(fpet[-2], nboot = 999)
 #save to file
 save(fpet_pairwise_fst_bp,
-     file ="output/Genetic_Stats/Fst/fpet_pairwise_WC_fst_bp.csv")
+     file ="fpet_pairwise_WC_fst_bp.csv")
 
 ll.fpet <- fpet_pairwise_fst_bp$ll #lower confidence limit
 ul.fpet <- fpet_pairwise_fst_bp$ul #upper confidence limit
 #write to file
-write.csv(ll.fpet, "output/Genetic_Stats/Fst/fpet_pairwise_WC_fst_ll.csv")
-write.csv(ul.fpet, "output/Genetic_Stats/Fst/fpet_pairwise_WC_fst_ul.csv")
+write.csv(ll.fpet, "fpet_pairwise_WC_fst_ll.csv")
+write.csv(ul.fpet, "fpet_pairwise_WC_fst_ul.csv")
 
 #####################format the complete table fpet#############################
 #round the table
@@ -187,7 +184,7 @@ fpet_Fst_table[lower.tri(fpet_Fst_table)] <- NA
 
 #write to file
 write.table(fpet_Fst_table,
-            file = "output/Genetic_Stats/Fst/fpet_Fst-table.txt",
+            file = "fpet_Fst-table.txt",
             sep = "\t")
 
 ################################test line A##############################
@@ -207,8 +204,8 @@ remove(above, below, fpet.A, fpet.B,A,B)
 fpet_pairwise_fst_A <- pairwise.WCfst(fpet.AB)
 fpet.AB$pop <- factor(fpet.AB$pop)
 fpet_pairwise_fst_bp.A <- boot.ppfst(fpet.AB, nboot = 999)
-write.csv(fpet_pairwise_fst_AB, file = "output/Genetic_Stats/fpet_pairwise_WC_fst_lineA.csv")
-save(fpet_pairwise_fst_bp.A, file = "output/Genetic_Stats/fpet_pairwise_WC_fst_bp_lineA.RDA")
+write.csv(fpet_pairwise_fst_AB, file = "fpet_pairwise_WC_fst_lineA.csv")
+save(fpet_pairwise_fst_bp.A, file = "fpet_pairwise_WC_fst_bp_lineA.RDA")
 
 ################################test line B##############################
 above <- c("113","95","201","179","204")
@@ -228,5 +225,5 @@ remove(above, below, fpet.A, fpet.B,A,B)
 fpet_pairwise_fst_B <- pairwise.WCfst(fpet.AB)
 fpet.AB$pop <- factor(fpet.AB$pop)
 fpet_pairwise_fst_bp.B <- boot.ppfst(fpet.AB, nboot = 999)
-write.csv(fpet_pairwise_fst_B, file = "output/Genetic_Stats/fpet_pairwise_WC_fst_lineB.csv")
-save(fpet_pairwise_fst_bp.B, file = "output/Genetic_Stats/fpet_pairwise_WC_fst_bp_lineB.RDA")
+write.csv(fpet_pairwise_fst_B, file = "fpet_pairwise_WC_fst_lineB.csv")
+save(fpet_pairwise_fst_bp.B, file = "fpet_pairwise_WC_fst_bp_lineB.RDA")

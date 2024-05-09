@@ -40,7 +40,7 @@ library(hierfstat)
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
 # Read csv data file into dataframe object.
-Fpet.df <- read.csv(file = "~/Projects/Fig_wasp_phylogeography/output/Genetic_Stats/hf_fpet_sub.csv")
+Fpet.df <- read.csv(file = "Data/hf_fpet_sub.csv")
 
 # View the data frame to check check contents and understand its structure.
 #View(Fpet.df)

@@ -8,12 +8,10 @@ library(ade4)
 library(adegenet)
 library(ggpubr)
 
-#setworking directories
-setwd("~/Projects/git_repositories/github/Fig_wasp_phylogeography/")
 ########################Load Dataset############################################
-load("Data/Gen_dist/cavalli-sforza_and_edwards_genetic_dist.RDA") #genetic distance 1
-load("Data/Gen_dist/Nei_83_genetic_dist.RDA") #genetic distance 2
-load("Data/Gen_dist/geo_distance.RDA") #geographical distance 
+load("Data/cavalli-sforza_and_edwards_genetic_dist.RDA") #genetic distance 1
+load("Data/Nei_83_genetic_dist.RDA") #genetic distance 2
+load("Data/geo_distance.RDA") #geographical distance 
 
 ########################preform mantel test#####################################
 #mantel for Northern and Southern population using Cavalli-sforza and edwards chord distance
@@ -75,7 +73,7 @@ p.1.nm <- ggplot(dmat.1.nm,aes(x = V2, y = V1)) +
               axis.title.y = element_text(size = 12))
 plot(p.1.nm)
 
-ggsave(p.1.nm, filename = "output/final_figures/Figure_5/IBD_cavalli_no_moax.pdf",
+ggsave(p.1.nm, filename = "IBD_cavalli_no_moax.pdf",
        device = "pdf", width = 4, height = 4, units = "in")
 
 p.1.m <- ggplot(dmat.1.m,aes(x = V2, y = V1)) + 
@@ -93,7 +91,7 @@ p.1.m <- ggplot(dmat.1.m,aes(x = V2, y = V1)) +
               axis.title.x = element_text(size = 12),
               axis.title.y = element_text(size = 12))
 plot(p.1.m)
-ggsave(p.1.m, filename = "output/final_figures/Figure_5/IBD_cavalli_moax.pdf",
+ggsave(p.1.m, filename = "IBD_cavalli_moax.pdf",
        device = "pdf", width = 4, height = 4, units = "in")
 
 p.2.nm <- ggplot(dmat.2.nm,aes(x = V2, y = V1)) + 
@@ -111,7 +109,7 @@ p.2.nm <- ggplot(dmat.2.nm,aes(x = V2, y = V1)) +
               axis.title.x = element_text(size = 12),
               axis.title.y = element_text(size = 12))
 plot(p.2.nm)
-ggsave(p.2.nm, filename = "output/final_figures/Figure_5/IBD_Nei_83_no_moax.pdf",
+ggsave(p.2.nm, filename = "IBD_Nei_83_no_moax.pdf",
        device = "pdf", width = 4, height = 4, units = "in")
 
 p.2.m <- ggplot(dmat.2.m,aes(x = V2, y = V1)) + 
@@ -129,5 +127,5 @@ p.2.m <- ggplot(dmat.2.m,aes(x = V2, y = V1)) +
               axis.title.x = element_text(size = 12),
               axis.title.y = element_text(size = 12))
 plot(p.2.m)
-ggsave(p.2.m, filename = "output/final_figures/Figure_5/IBD_Nei_83_moax.pdf",
+ggsave(p.2.m, filename = "IBD_Nei_83_moax.pdf",
        device = "pdf", width = 4, height = 4, units = "in")
