@@ -2,8 +2,8 @@
 # Author: Kevin Quinteros
 # Date: October 12, 2023
 # ---------------------------------------------------------------------------- #
-# Purpose: This R code aims to analyze and visualize the distrobution of 
-#Pegoscapus population graphs as described by (Dyer & Nason 2004).
+# Purpose: This R code aims to analyze and visualize the distribution of 
+# Pegoscapus population graphs as described by (Dyer & Nason 2004).
 #
 #
 # 1. Plot Pegoscapus populations graph using the popgraph package
@@ -29,13 +29,13 @@ library(rgdal)
 library(elevatr)
 
 # ------------------------------SET ENVIRONMENT--------------------------------
-#set workding directory
-setwd("~/Projects/Fig_wasp_phylogeography/")
+# set workding directory
+# setwd("~/Projects/Fig_wasp_phylogeography/") 
 
 # ------------------------------READ IN DATA-----------------------------------
 #Read in Genetic Data
-pego.df <- read.csv("Data/hf_pego_sep.csv") 
-pego <- read_population("Data/hf_pego_sep.csv", type="separated",
+pego.df <- read.csv("hf_pego_sep.csv") 
+pego <- read_population("hf_pego_sep.csv", type="separated",
                         locus.columns = 2:1416,
                         phased= TRUE, sep = ",",
                         header = TRUE)
@@ -44,7 +44,7 @@ pego <- read_population("Data/hf_pego_sep.csv", type="separated",
 pego$Pop <- pego.df$Pop
 
 #Read in geospatial Data
-geo <- read_csv("Data/locality_info/locality_pego.csv")
+geo <- read_csv("locality_pego.csv")
 
 # --------------------------DATA MANIPULATION-----------------------------------
 #group some site together,since they're in the same cluster based off PCA
