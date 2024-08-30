@@ -18,7 +18,7 @@ library(cowplot)
 
 
 ###Set working directory--------------
-setwd("~/Projects/git_repositories/github/Fig_wasp_phylogeography/")
+#setwd("~/Projects/git_repositories/github/Fig_wasp_phylogeography/")
 
 #########################Loading recurring functions############################
 #purpose: combine separate site data frames into one data frame
@@ -33,7 +33,7 @@ pca <- function(seq_tab){
 
 ###################### import and filter data (always run)######################
 #Phased SNPs
-load("Data/Phased_data/UCE_50p/Method1/Phased_snps/phased_snp_50.Rda")
+load("phased_snp_50.Rda")
 #############################All Sites##########################################
 ########################### split sites (always run) %%%%%%%%%%%%%%%%%%%%%%%%%%%
 #phased data set
@@ -108,7 +108,7 @@ peg.all <- ggplot(MG.sep.p[3:1828], aes(x = MG.sep.p$Axis1,
         axis.title.x = element_text(size = 10),
         axis.title.y = element_text(size = 10))
 plot(peg.all)
-ggsave(peg.all, filename = "output/final_figures/Figure_3/peg_all_pca.pdf",
+ggsave(peg.all, filename = "peg_all_pca.pdf",
        device = "pdf", width = 6.5, height = 4, units = "in", dpi=300)
 
 #############################No Morelos and Oaxaca##############################
@@ -124,7 +124,7 @@ seq_tab.p <- lapply(seq_tab.p,
 )
 seq_tab.p <- Filter(Negate(is.null), seq_tab.p )
 ##format seq_pop objects#
-sites <- read_csv("Data/Locality_Fpet.csv")
+sites <- read_csv("Locality_Fpet.csv")
 moax <- sites %>%
   filter(State %in% c("OAX", "MOR"))
 moax <- unique(moax$Site)
@@ -194,7 +194,7 @@ peg.no_moax <- ggplot(MG.sep.p[3:1998], aes(x = MG.sep.p$Axis1, y = MG.sep.p$Axi
 plot(peg.no_moax)
 
 ggsave(peg.no_moax,
-       filename = "output/final_figures/Figure_3/peg_no_moax_pca.pdf", 
+       filename = "peg_no_moax_pca.pdf", 
        device = "pdf", width = 4, height = 4, units = "in", dpi=300)
 #############################Morelos and Oaxaca#################################
 seq_pop.p <- seppop(phased_snp_50) #separate genotypes per population
@@ -207,7 +207,7 @@ seq_tab.p <- lapply(seq_tab.p,
 
 seq_tab.p <- Filter(Negate(is.null), seq_tab.p )
 ##format seq_pop objects#
-sites <- read_csv("Data/Locality_Fpet.csv")
+sites <- read_csv("Locality_Fpet.csv")
 moax <- sites %>%
   filter(State %in% c("OAX", "MOR"))
 moax <- unique(moax$Site)
@@ -281,5 +281,5 @@ peg.moax <- ggplot(MG.sep.p[3:2498],
         axis.title.y = element_text(size = 10))
 plot(peg.moax)
 
-ggsave(peg.moax, filename = "output/final_figures/Figure_3/peg_moax_pca.pdf",
+ggsave(peg.moax, filename = "peg_moax_pca.pdf",
        device = "pdf", width = 4, height = 4, units = "in", dpi=300)
