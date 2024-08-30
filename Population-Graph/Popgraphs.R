@@ -2,8 +2,8 @@
 # Author: Kevin Quinteros
 # Date: October 12, 2023
 # ---------------------------------------------------------------------------- #
-# Purpose: This R code aims to analyze and visualize the distrobution of 
-#Pegoscapus population graphs as described by (Dyer & Nason 2004).
+# Purpose: This R code aims to analyze and visualize the distribution of 
+# Pegoscapus population graphs as described by (Dyer & Nason 2004).
 #
 #
 # 1. Plot Pegoscapus populations graph using the popgraph package
@@ -28,6 +28,13 @@ library(raster)
 library(rgdal)
 library(elevatr)
 
+HEAD
+
+# ------------------------------SET ENVIRONMENT--------------------------------
+# set workding directory
+# setwd("~/Projects/Fig_wasp_phylogeography/") 
+
+ fc86c4f422fdf1b8a5c8ba868f1afcacbe82ee9f
 # ------------------------------READ IN DATA-----------------------------------
 #Read in Genetic Data
 pego.df <- read.csv("hf_pego_sep.csv") 
