@@ -28,14 +28,10 @@ library(raster)
 library(rgdal)
 library(elevatr)
 
-# ------------------------------SET ENVIRONMENT--------------------------------
-#set workding directory
-setwd("~/Projects/Fig_wasp_phylogeography/")
-
 # ------------------------------READ IN DATA-----------------------------------
 #Read in Genetic Data
-pego.df <- read.csv("Data/hf_pego_sep.csv") 
-pego <- read_population("Data/hf_pego_sep.csv", type="separated",
+pego.df <- read.csv("hf_pego_sep.csv") 
+pego <- read_population("hf_pego_sep.csv", type="separated",
                         locus.columns = 2:1416,
                         phased= TRUE, sep = ",",
                         header = TRUE)
@@ -44,7 +40,7 @@ pego <- read_population("Data/hf_pego_sep.csv", type="separated",
 pego$Pop <- pego.df$Pop
 
 #Read in geospatial Data
-geo <- read_csv("Data/locality_info/locality_pego.csv")
+geo <- read_csv("locality_pego.csv")
 
 # --------------------------DATA MANIPULATION-----------------------------------
 #group some site together,since they're in the same cluster based off PCA
@@ -222,6 +218,6 @@ plot(dist)
 sum( mean(obs) >= perm_elev )
 
 # Save to file 
-ggsave(filename = "output/Popgraph/Dist-Permutation-Elevations.pdf", plot = dist, width = 6, height = 5)
+ggsave(filename = "Dist-Permutation-Elevations.pdf", plot = dist, width = 6, height = 5)
 
 
