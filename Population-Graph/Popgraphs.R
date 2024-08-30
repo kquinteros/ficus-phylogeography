@@ -222,6 +222,6 @@ plot(dist)
 sum( mean(obs) >= perm_elev )
 
 # Save to file 
-ggsave(filename = "output/Popgraph/Dist-Permutation-Elevations.pdf", plot = dist, width = 6, height = 5)
+ggsave(filename = "Dist-Permutation-Elevations.pdf", plot = dist, width = 6, height = 5)
 
 
